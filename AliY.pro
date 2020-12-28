@@ -40,9 +40,4 @@ else:unix: LIBS += -L$$PWD/mqtt/lib/ -lqmqtt
 INCLUDEPATH += $$PWD/mqtt
 DEPENDPATH += $$PWD/mqtt
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/mqtt/lib/ -lqmqtt
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/mqtt/lib/ -lqmqttd
-else:unix: LIBS += -L$$PWD/mqtt/lib/ -lqmqtt
 
-INCLUDEPATH += $$PWD/mqtt/include
-DEPENDPATH += $$PWD/mqtt/include
