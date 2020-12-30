@@ -9,8 +9,7 @@ int main(int argc, char *argv[])
     N1 =new MQTT();
     std::cout<<"Ready for MQTT connect...\n";
     system("pause");
-   // int input ;
-   // scanf_s("%d", &input);//等待输入判断获取的数字
     N1->connect();
+
     return a.exec();
 }

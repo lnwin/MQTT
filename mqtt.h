@@ -15,6 +15,10 @@ public:
     MQTT();
     void connect();
     void ConnectState();
+    void PublishState();
+    void SubcribeState();
+    void Listing();
+    void Received(const QMQTT::Message& message);
 
 
 };
