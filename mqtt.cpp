@@ -68,9 +68,11 @@ void MQTT::Listing()
 }
 void MQTT::Received(const QMQTT::Message &message)
 {
-  std::cout<< "RECEIVED!...\n";
+  std::cout<< QByteArray::fromBase64(message.payload()).toStdString().erase(0,6) ;
+  std::cout<< "\n";
 }
 void MQTT::SubcribeState()
 {
-    std::cout<< "SubcribeState Successed!!";
+    std::cout<< "SubcribeState Successed!!...\n";
+    std::cout<< "Waiting for message....";
 }
