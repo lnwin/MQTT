@@ -1,5 +1,6 @@
+#国重项目PC端，订阅测试版本
 QT -= gui
-
+QT +=serialport
 CONFIG += c++11 console
 CONFIG -= app_bundle
 QT       += core gui network

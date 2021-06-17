@@ -21,13 +21,13 @@ void MQTT::connect()
 {
 
    // QObject::connect(Client,&QMQTT::Client::connected,this,&MQTT::ConnectState);
-    QString password = "A99517618411A9B71BAA5C69B9B40A06F334B237";
-    Client->setHostName("g3naB3HCqbw.iot-as-mqtt.cn-shanghai.aliyuncs.com");//服务器地址
+    QString password = "0EC379642187138440154CF6CDD4F23B711D44CA";
+    Client->setHostName("a1GmkhtgJeN.iot-as-mqtt.cn-shanghai.aliyuncs.com");//服务器地址
     Client->setClientId("008|securemode=3,signmethod=hmacsha1|");
    // Client->setHost(QHostAddress("mqtt://g3naB3HCqbw.iot-as-mqtt.cn-shanghai.aliyuncs.com"));
     Client->setPort(static_cast<quint16>(1883));
     Client->setPassword(password.toLocal8Bit());
-    Client->setUsername("Izi7VInmeoSOooQwlfJO&g3naB3HCqbw");
+    Client->setUsername("WEIXING&a1GmkhtgJeN");
     Client->setKeepAlive(60);
     Client->connectToHost();
 
@@ -64,11 +64,12 @@ void MQTT::Listing()
 {
     std::cout<<"Ready for GET...\n";
     system("pause");
-    Client->subscribe("/g3naB3HCqbw/Izi7VInmeoSOooQwlfJO/user/get",1);
+    Client->subscribe("/a1GmkhtgJeN/WEIXING/user/get",1);
 }
 void MQTT::Received(const QMQTT::Message &message)
 {
-  std::cout<< QByteArray::fromBase64(message.payload()).toStdString().erase(0,6) ;
+ // std::cout<< QByteArray::fromBase64(message.payload()).toStdString().erase(0,6) ;
+  std::cout<<message.payload().toStdString() ;
   std::cout<< "\n";
 }
 void MQTT::SubcribeState()
