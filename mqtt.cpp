@@ -20,18 +20,24 @@ MQTT::MQTT()
 void MQTT::connect()
 {
 
-   // QObject::connect(Client,&QMQTT::Client::connected,this,&MQTT::ConnectState);
+  ///=================================接收端登录
     QString password = "0EC379642187138440154CF6CDD4F23B711D44CA";
     Client->setHostName("a1GmkhtgJeN.iot-as-mqtt.cn-shanghai.aliyuncs.com");//服务器地址
     Client->setClientId("008|securemode=3,signmethod=hmacsha1|");
-   // Client->setHost(QHostAddress("mqtt://g3naB3HCqbw.iot-as-mqtt.cn-shanghai.aliyuncs.com"));
     Client->setPort(static_cast<quint16>(1883));
     Client->setPassword(password.toLocal8Bit());
     Client->setUsername("WEIXING&a1GmkhtgJeN");
     Client->setKeepAlive(60);
     Client->connectToHost();
-
-
+///===================================发射端登陆
+//       QString password = "E350E4EDF03861E9BB21B00C2FBD3DF4E1F14138";
+//       Client->setHostName("a1GmkhtgJeN.iot-as-mqtt.cn-shanghai.aliyuncs.com");//服务器地址
+//       Client->setClientId("001|securemode=3,signmethod=hmacsha1|");
+//       Client->setPort(static_cast<quint16>(1883));
+//       Client->setPassword(password.toLocal8Bit());
+//       Client->setUsername("fashe&a1GmkhtgJeN");
+//       Client->setKeepAlive(60);
+//       Client->connectToHost();
 
 };
 
@@ -53,12 +59,13 @@ void MQTT::ConnectState()
 //       // QMQTT::Message Message("DCWX the second message");
 //        Client->publish(message);
 //    }
-Listing();
+    Listing();
+    //Publish();
 }
 void MQTT::PublishState()
  {
      std::cout<<"published success!...\n";
-     Listing();
+    // Listing();
  };
 void MQTT::Listing()
 {
@@ -68,12 +75,20 @@ void MQTT::Listing()
 }
 void MQTT::Received(const QMQTT::Message &message)
 {
- // std::cout<< QByteArray::fromBase64(message.payload()).toStdString().erase(0,6) ;
-  std::cout<<message.payload().toStdString() ;
-  std::cout<< "\n";
+ // std::cout<< QByteArray::fromBase64(message.payload()).toStdString() ;
+  std::cout<<message.payload().toHex().toStdString();
 }
 void MQTT::SubcribeState()
 {
     std::cout<< "SubcribeState Successed!!...\n";
     std::cout<< "Waiting for message....";
 }
+void MQTT::Publish()
+{       const quint16 id         = 001;
+        const QString topic      = "/a1GmkhtgJeN/fashe/user/update";
+        const QByteArray payload = "test update";
+        const quint8 qos         = 0;
+        const bool retain        = true;
+        const Message message(id, topic, payload, qos, retain);
+        Client->publish(message);
+};

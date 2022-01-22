@@ -18,6 +18,7 @@ public:
     void PublishState();
     void SubcribeState();
     void Listing();
+    void Publish();
     void Received(const QMQTT::Message& message);
 
 
